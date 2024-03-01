@@ -2,12 +2,15 @@ package com.appdelevloperblogapp.ws.ui.model.request;
 
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class UserDetailsRequestModel {
-    @NotNull
+    @NotNull(message = "First name cannot be null")
+    @Size(min = 2, message = "First name must not be less than 2 char")
     private String firstName;
 
-    @NotNull
+   @NotNull(message = "Last name cannot be null")
+   @Size(min = 2, message = "Last name must not be less than 2 char")
    private String lastName;
 
    @NotNull
