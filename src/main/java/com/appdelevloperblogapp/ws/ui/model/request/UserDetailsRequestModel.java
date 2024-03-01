@@ -1,10 +1,19 @@
 package com.appdelevloperblogapp.ws.ui.model.request;
 
+
+import jakarta.validation.constraints.NotNull;
+
 public class UserDetailsRequestModel {
+    @NotNull
     private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
+
+    @NotNull
+   private String lastName;
+
+   @NotNull
+   private String email;
+    @NotNull
+   private String password;
 
     public String getFirstName() {
         return firstName;

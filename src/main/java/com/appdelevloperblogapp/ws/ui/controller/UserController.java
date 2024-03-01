@@ -2,9 +2,11 @@ package com.appdelevloperblogapp.ws.ui.controller;
 
 import com.appdelevloperblogapp.ws.ui.model.request.UserDetailsRequestModel;
 import com.appdelevloperblogapp.ws.ui.model.response.UserRest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -50,7 +52,7 @@ public class UserController {
      */
     @PostMapping(consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
                  produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<UserRest> createUser(@RequestBody UserDetailsRequestModel userDetails) {
+    public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequestModel userDetails) {
         UserRest userRest = new UserRest();
         userRest.setEmail(userDetails.getEmail());
         userRest.setFirstName(userDetails.getFirstName());
