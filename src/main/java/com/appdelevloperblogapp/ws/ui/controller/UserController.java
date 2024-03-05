@@ -30,7 +30,7 @@ public class UserController {
     public ResponseEntity<UserRest> getUser(@PathVariable String userId) {
 
         /**
-         * Handling null pointer exception
+         * Handling exception
          */
         String firstName = null;
         int firstNameLength = firstName.length();
