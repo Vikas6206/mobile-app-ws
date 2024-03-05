@@ -1,5 +1,6 @@
 package com.appdelevloperblogapp.ws.ui.controller;
 
+import com.appdelevloperblogapp.ws.exception.UserServiceException;
 import com.appdelevloperblogapp.ws.ui.model.request.UpdateUserDetailsRequestModel;
 import com.appdelevloperblogapp.ws.ui.model.request.UserDetailsRequestModel;
 import com.appdelevloperblogapp.ws.ui.model.response.UserRest;
@@ -7,7 +8,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -32,8 +32,13 @@ public class UserController {
         /**
          * Handling exception
          */
-        String firstName = null;
-        int firstNameLength = firstName.length();
+//        String firstName = null;
+//        int firstNameLength = firstName.length();
+
+        /**
+         * handling custome exception
+         */
+        if(true) throw new UserServiceException(" A user service exception is thrown... bhai ne raiyata faila diya :P");
 
         if (userId.equals("-1")) {
             return ResponseEntity.badRequest().build();
