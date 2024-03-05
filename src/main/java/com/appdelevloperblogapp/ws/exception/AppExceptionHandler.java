@@ -23,9 +23,14 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorMessage,new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-
-    @ExceptionHandler(value = NullPointerException.class)
-    public ResponseEntity<Object> handleNullPointerException(NullPointerException exception,WebRequest webRequest) {
+    /**
+     * Handling multiple exception in 1 method
+     * @param exception
+     * @param webRequest
+     * @return
+     */
+    @ExceptionHandler(value = {NullPointerException.class,UserServiceException.class})
+    public ResponseEntity<Object> handleNullPointerException(Exception exception,WebRequest webRequest) {
         String errorMessageDescription = exception.getLocalizedMessage();
 
         if(errorMessageDescription == null) errorMessageDescription = exception.toString();
@@ -33,14 +38,6 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorMessage,new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(value = UserServiceException.class)
-    public ResponseEntity<Object> handleUserServiceException(UserServiceException exception,WebRequest webRequest) {
-        String errorMessageDescription = exception.getLocalizedMessage();
-
-        if(errorMessageDescription == null) errorMessageDescription = exception.toString();
-        ErrorMessage errorMessage = new ErrorMessage(new Date(), errorMessageDescription);
-        return new ResponseEntity<>(errorMessage,new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
 
 
 }
