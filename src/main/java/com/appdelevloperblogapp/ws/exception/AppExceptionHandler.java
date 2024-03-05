@@ -2,7 +2,6 @@ package com.appdelevloperblogapp.ws.exception;
 
 import com.appdelevloperblogapp.ws.ui.model.response.ErrorMessage;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,4 +22,16 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorMessage errorMessage = new ErrorMessage(new Date(), errorMessageDescription);
         return new ResponseEntity<>(errorMessage,new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
+    @ExceptionHandler(value = NullPointerException.class)
+    public ResponseEntity<Object> handleNullPointerException(NullPointerException exception,WebRequest webRequest) {
+        String errorMessageDescription = exception.getLocalizedMessage();
+
+        if(errorMessageDescription == null) errorMessageDescription = exception.toString();
+        ErrorMessage errorMessage = new ErrorMessage(new Date(), errorMessageDescription);
+        return new ResponseEntity<>(errorMessage,new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
 }
