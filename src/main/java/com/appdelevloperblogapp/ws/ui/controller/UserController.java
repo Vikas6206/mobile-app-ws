@@ -29,6 +29,12 @@ public class UserController {
             produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<UserRest> getUser(@PathVariable String userId) {
 
+        /**
+         * Handling null pointer exception
+         */
+        String firstName = null;
+        int firstNameLength = firstName.length();
+
         if (userId.equals("-1")) {
             return ResponseEntity.badRequest().build();
         }
